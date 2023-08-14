@@ -6,7 +6,7 @@ function QuestionBank() {
     const [boxs, setBoxs] = useState([]);
 
     const addValue = () => {
-        const tempArr = [...boxs, { value1: '', value2: '' }];
+        const tempArr = [...boxs, { marks: '', question_value: '', image: null }];
         setBoxs(tempArr);
     }
 
@@ -15,7 +15,12 @@ function QuestionBank() {
         updatedData[i][valueKey] = event.target.value;
         setBoxs(updatedData);
     }
-    console.log(boxs)
+
+    const handleImageChange = (event, i) => {
+        const updatedData = [...boxs];
+        updatedData[i].image = event.target.files[0];
+        setBoxs(updatedData);
+    }
 
     const handleDelete = (i) => {
         const updatedArr = [...boxs];
@@ -23,14 +28,31 @@ function QuestionBank() {
         setBoxs(updatedArr);
     }
 
-
-    return ( 
+    return (
         <div className="question-bank">
             {boxs.map((data, i) => {
                 return (
                     <div className="question-container" key={i}>
-                        <input className='question-box' type="text" placeholder="Value 1" value={data.value1} onChange={e => handleChange(e, i, 'value1')} />
-                        <input className='question-box' type="text" placeholder="Value 2" value={data.value2} onChange={e => handleChange(e, i, 'value2')} />
+                        <input
+                            className='question-box-marks'
+                            type="text"
+                            placeholder="Marks"
+                            value={data.value1}
+                            onChange={e => handleChange(e, i, 'marks')}
+                        />
+                        <input
+                            className='question-box'
+                            type="text"
+                            placeholder="Question"
+                            value={data.value2}
+                            onChange={e => handleChange(e, i, 'question_value')}
+                        />
+                        <input
+                            className='question-box image-upload'
+                            type="file"
+                            accept="image/*"
+                            onChange={e => handleImageChange(e, i)}
+                        />
                         <button className="delete-button" onClick={() => handleDelete(i)}>x</button>
                     </div>
                 )
@@ -39,5 +61,6 @@ function QuestionBank() {
         </div>
     );
 }
- 
+
+
 export default QuestionBank;

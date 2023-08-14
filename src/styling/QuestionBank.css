@@ -11,12 +11,27 @@ body{
 
 }
 
+.question-box-marks{
+    height: 40px;
+    width: 60px;
+    border-radius: 50px;
+    font-size: 15px;
+    text-align: center;
+}
+
 .question-box{
     height: 40px;
-    width: 400px;
+    min-width: 400px;
+    width: none;
     border-radius: 50px;
     padding: 0px 0px 0px 10px;
+    margin: 0px 0px 0px 22px;
     font-size: 15px;
+}
+
+.image-upload{
+    border-radius: 0.1rem;
+    cursor: pointer;
 }
 
 .add-value{
