@@ -1,0 +1,47 @@
+body{
+    display: box;
+    align-content: center;
+}
+
+.question-container{
+    align-items: center;
+    display: flex;
+    flex-direction: rows;
+    margin: 20px 0px;
+
+}
+
+.question-box{
+    height: 40px;
+    width: 400px;
+    border-radius: 50px;
+    padding: 0px 0px 0px 10px;
+    font-size: 15px;
+}
+
+.add-value{
+    height: 40px;
+    width: 100px;
+    border-radius: 50px;
+    background-color: #08AEEA;
+    background-image: linear-gradient(45deg, #08AEEA 0%, #2AF598 50%, #daf9b1 100%);
+    border: none;
+    margin: 0px 0px 0px 0px;
+}
+
+.delete-button{
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    background-color: #FAD961;
+    background-image: linear-gradient(64deg, #FAD961 1%, #F76B1C 100%);
+    will-change: transform;
+}
+
+.delete-button:hover{
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    background-color: #FAD961;
+    background-image: linear-gradient(64deg, #FAD961 1%, #F76B1C 23%);
+}
