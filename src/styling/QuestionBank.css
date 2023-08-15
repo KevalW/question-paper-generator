@@ -1,5 +1,5 @@
 body{
-    display: box;
+    display: flex;
     align-content: center;
 }
 
