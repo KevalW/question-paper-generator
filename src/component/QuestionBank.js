@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // Required for side-effects
 import "firebase/firestore";
@@ -68,7 +68,7 @@ function QuestionBank() {
                 question,
                 image: imageUrl,
             });
-            console.log("Document written with ID: ", docRef.id);
+            // console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -81,17 +81,22 @@ function QuestionBank() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const questionsRef = firestore.collection('questions');
-            const snapshot = await questionsRef.get();
-            const newData = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-            setData(newData);
+            try {
+                const questionsRef = collection(firestore, 'questions');
+                const snapshot = await getDocs(questionsRef);
+                const newData = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setData(newData);
+                console.log("Fetched data:", newData);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         };
 
         fetchData();
-    }, []);
+    },[]);
 
     return (
         <div>
@@ -138,7 +143,7 @@ function QuestionBank() {
                             <td>{item.marks}</td>
                             <td>{item.question}</td>
                             <td>
-                                {item.image && <img src={item.image} alt={`Question ${item.id}`} />}
+                                {item.image && <img className='img-display' src={item.image} alt={`Question ${item.id}`}/>}
                             </td>
                         </tr>
                     ))}
