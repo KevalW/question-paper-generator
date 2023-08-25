@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
@@ -96,38 +97,65 @@ function QuestionBank() {
         };
 
         fetchData();
-    },[]);
+    }, []);
 
     return (
-        <div>
+        <div className="container mt-5">
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Module"
-                    value={module}
-                    onChange={(e) => setModule(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Marks"
-                    value={marks}
-                    onChange={(e) => setMarks(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Question"
-                    value={question}
-                    onChange={(e) => setQuestion(e.target.value)}
-                />
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setImage(e.target.files[0])}
-                />
-                <button type="submit">Add</button>
+                <div className="row">
+                    <div className="col-md-3">
+                        <label>Module</label>
+                        <select
+                            className="form-select"
+                            value={module}
+                            onChange={(e) => setModule(e.target.value)}
+                        >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                    <div className="col-md-2">
+                        <label>Marks</label>
+                        <select
+                            className="form-select"
+                            value={marks}
+                            onChange={(e) => setMarks(e.target.value)}
+                        >
+                            <option value="2">2</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div className="col-md-5">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Question"
+                            value={question}
+                            onChange={(e) => setQuestion(e.target.value)}
+                        />
+                    </div>
+                    <div className="col-md-2">
+                        <input
+                            type="file"
+                            accept="image/*"
+                            className="form-control-file"
+                            onChange={(e) => setImage(e.target.files[0])}
+                        />
+                    </div>
+                    <div className="col-md-12 mt-2">
+                        <button type="submit" className="btn btn-primary btn-block">
+                            Add
+                        </button>
+                    </div>
+                </div>
             </form>
 
-            <table>
+            <table className="table mt-5">
                 <thead>
                     <tr>
                         <th>Module</th>
@@ -143,7 +171,9 @@ function QuestionBank() {
                             <td>{item.marks}</td>
                             <td>{item.question}</td>
                             <td>
-                                {item.image && <img className='img-display' src={item.image} alt={`Question ${item.id}`}/>}
+                                {item.image && (
+                                    <img className="rounded mx-auto d-block image-size" src={item.image} alt={`Question ${item.id}`} />
+                                )}
                             </td>
                         </tr>
                     ))}
@@ -151,6 +181,7 @@ function QuestionBank() {
             </table>
         </div>
     );
+
 }
 
 export default QuestionBank;
