@@ -1,0 +1,24 @@
+/* LoginPage.css */
+
+/* Center the login container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../img/loginBackground/6057485.jpg'); /* Replace with the actual image path */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Style the login form container */
+  .login-form-container {
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  /* Customize further as needed */
