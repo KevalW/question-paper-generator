@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
-import QuestionBank from './component/QuestionBank.js';
+import QuestionBank from './QuestionBank.js';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './styling/QuestionBank.css'
-import LoginPage from './component/LoginPage';
+import LoginPage from './LoginPage';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<QuestionBank />}></Route>
-          <Route path="/k" element={<LoginPage />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
         </Routes>
       </Router>
     </div>
