@@ -10,12 +10,29 @@ function QuestionBank() {
     const [question, setQuestion] = useState('');
     const [image, setImage] = useState(null);
     const [data, setData] = useState([]);
+    const [error, setError] = useState('');
 
     const db = getDatabase(app);
     const questionsRef = rtdbRef(db, 'questions');
 
+    useEffect(() => {
+        if (window.performance.navigation.type === 1) {
+            setModule('');
+            setMarks('');
+            setQuestion('');
+            setImage(null);
+        }
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!module || !marks || (!question && !image)) {
+            setError('Module, marks, and at least one question or image are required');
+            return;
+        }
+
+        setError(''); // Clear any previous error messages
 
         let imageUrl = '';
 
@@ -55,7 +72,7 @@ function QuestionBank() {
                 const itemRef = rtdbRef(db, `questions/${itemId}`);
                 remove(itemRef);
             } catch (error) {
-                console.error('Error deleting item from the database:', error.messags);
+                console.error('Error deleting item from the database:', error.message);
             }
         }
     };
@@ -86,6 +103,7 @@ function QuestionBank() {
     return (
         <div className="container mt-5">
             <form onSubmit={handleSubmit}>
+                {error && <p className="text-danger">{error}</p>}
                 <div className="row">
                     <div className="col-md-3">
                         <label>Module</label>
@@ -93,7 +111,9 @@ function QuestionBank() {
                             className="form-select"
                             value={module}
                             onChange={(e) => setModule(e.target.value)}
+                            required
                         >
+                            <option value="">Select Module</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -108,7 +128,9 @@ function QuestionBank() {
                             className="form-select"
                             value={marks}
                             onChange={(e) => setMarks(e.target.value)}
+                            required
                         >
+                            <option value="">Select Marks</option>
                             <option value="2">2</option>
                             <option value="5">5</option>
                             <option value="10">10</option>
