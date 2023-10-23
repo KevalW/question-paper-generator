@@ -1,0 +1,25 @@
+/* src/components/QuestionBank.module.css */
+/* Add your custom styles here */
+
+.formContainer {
+  margin-bottom: 20px;
+}
+
+.customTable {
+  text-align: center;
+}
+
+.tableImage {
+  max-width: 100px;
+  max-height: 100px;
+}
+.img-display{
+  display: block;
+  height: auto;
+  width: 120px;
+ }
+
+.image-size{
+  width: 100px;
+  height: auto;
+}
