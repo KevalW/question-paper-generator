@@ -55,8 +55,8 @@ function QuestionBank() {
             push(questionsRef, newQuestion);
 
             // Clear input fields after submission
-            setModule('');
-            setMarks('');
+            // setModule('');
+            // setMarks('');
             setQuestion('');
             setImage(null);
         } catch (error) {
